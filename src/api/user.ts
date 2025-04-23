@@ -1,6 +1,7 @@
 import { http } from "@/utils/http";
+import { baseUrlApi } from "./util";
 
-export type UserResult = {
+export type LoginResult = {
   success: boolean;
   data: {
     /** 头像 */
@@ -22,6 +23,11 @@ export type UserResult = {
   };
 };
 
+export type RegisterResult = {
+  success: boolean;
+  message?: string;
+};
+
 export type RefreshTokenResult = {
   success: boolean;
   data: {
@@ -34,9 +40,14 @@ export type RefreshTokenResult = {
   };
 };
 
+// 注册
+export const getRegister = (data?: object) => {
+  return http.request<RegisterResult>("post", baseUrlApi("register"), { data });
+};
+
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<UserResult>("post", "/login", { data });
+  return http.request<LoginResult>("post", baseUrlApi("login"), { data });
 };
 
 /** 刷新`token` */
