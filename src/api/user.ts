@@ -42,12 +42,14 @@ export type RefreshTokenResult = {
 
 // 注册
 export const getRegister = (data?: object) => {
-  return http.request<RegisterResult>("post", baseUrlApi("register"), { data });
+  return http.request<RegisterResult>("post", baseUrlApi("user/register"), {
+    data
+  });
 };
 
 /** 登录 */
 export const getLogin = (data?: object) => {
-  return http.request<LoginResult>("post", baseUrlApi("login"), { data });
+  return http.request<LoginResult>("post", baseUrlApi("user/login"), { data });
 };
 
 /** 刷新`token` */
